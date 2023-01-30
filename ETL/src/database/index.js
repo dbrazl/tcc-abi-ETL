@@ -3,8 +3,9 @@ import Sequelize from 'sequelize';
 import config from '../config/database';
 
 import InfectedModels from '../models/Infected';
+import DeathModels from '../models/Death'; 
 
-const models = [...InfectedModels];
+const models = [...InfectedModels, ...DeathModels];
 
 class Database {
   constructor() {
