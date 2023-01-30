@@ -33,9 +33,9 @@ const getFK = async (infecteds, item, label, model, label_id) => {
   }
 };
 
-const populateFact = async (infecteds, item, fact) => {
+const infectedFact = async (infecteds, item) => {
   try {
-    await fact.create({
+    await FatoInfectado.create({
       id: item['ID'],
       urs_FK: await getFK(infecteds, item, 'URS', DimensaoURSInfectado, 'urs_id'),
       micro_FK: await getFK(infecteds, item, 'MICRO', DimensaoMicroInfectado, 'micro_id'),
@@ -68,6 +68,6 @@ export const populateFatoInfectado = async (infecteds) => {
   copyInfecteds.shift();
 
   await Promise.all(
-    copyInfecteds.map(item => populateFact(infecteds, item, FatoInfectado))
+    copyInfecteds.map(item => infectedFact(infecteds, item))
   );
 };
