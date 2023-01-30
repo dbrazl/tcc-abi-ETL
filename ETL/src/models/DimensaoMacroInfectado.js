@@ -1,10 +1,10 @@
 import Sequelize, { Model } from 'sequelize';
 
-class DimensaoMicroInfectado extends Model {
+class DimensaoMacroInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        micro_id: Sequelize.NUMBER,
+        macro_id: Sequelize.NUMBER,
         rotulo: Sequelize.STRING
       },
       {
@@ -16,4 +16,4 @@ class DimensaoMicroInfectado extends Model {
   }
 }
 
-export default DimensaoMicroInfectado;
+export default DimensaoMacroInfectado;
