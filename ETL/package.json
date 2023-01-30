@@ -6,9 +6,10 @@
   "author": "Daniel Braz <danielbrazlopes16@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "sucrase-node ./src/index.js"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "sucrase": "^3.29.0"
   }
 }
