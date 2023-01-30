@@ -41,7 +41,7 @@ const getUniques = async (infecteds, label) => {
 const populate = async (list, label, model) => {
   const datas = await getUniques(list, label);
   await Promise.all(
-    datas.forEach(
+    datas.map(
       async data => await model.create(
         { 
           rotulo: data 
@@ -73,7 +73,7 @@ export const populateDataInfectado = async (infecteds) => {
   const datas = [... new Set(allDatas)];
   
   await Promise.all(
-    datas.forEach(
+    datas.map(
       async data => await DimensaoDataInfectado.create(
         { 
           rotulo: data 
