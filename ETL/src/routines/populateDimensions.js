@@ -178,3 +178,12 @@ export const populateMunicipioResidenciaObito = async (deaths) => {
 export const populateURSObito = async (deaths) => {
   await populate(deaths, 'URS', DimensaoURSObito);
 };
+
+export const populateAllDeathDimensions = async (deaths) => {
+  await populateCodigoIBGEObito(deaths);
+  await populateDataObito(deaths);
+  await populateMacroObito(deaths);
+  await populateMicroObito(deaths);
+  await populateMunicipioResidenciaObito(deaths);
+  await populateURSObito(deaths);
+};
