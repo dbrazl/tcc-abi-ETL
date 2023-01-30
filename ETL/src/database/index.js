@@ -19,6 +19,14 @@ class Database {
       .map(model => model.init(this.connection))
       .map(model => model.associate && model.associate(this.connection.models));
   }
+
+  async createTables() {
+    try {
+      await Promise.all(models.map(async model => await model.sync()));
+    } catch(error) {
+      console.error(error);
+    }
+  }
 }
 
 export default new Database();
