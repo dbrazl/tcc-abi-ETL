@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:dbrazl/tcc-abi-ETL.git",
   "author": "Daniel Braz <danielbrazlopes16@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
