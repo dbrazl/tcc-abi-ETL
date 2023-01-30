@@ -1,19 +1,26 @@
 import 'dotenv/config';
 import Database from './database';
 
-import { getInfectedData } from './routines/extractData';
+import { getInfectedData, getDeathData } from './routines/extractData';
 import { joinData } from './routines/joinData';
-import { populateAllInfectedsDimensions } from './routines/populateDimensions';
+import { populateAllDeathDimensions, populateAllInfectedsDimensions } from './routines/populateDimensions';
 class App {
   async init() {
     await Database.createTables();
     await this.infectedsRoutines();
+    await this.deathRoutines();
   }
 
   async infectedsRoutines() {
     const infecteds = await getInfectedData();
     const joinedInfecteds = joinData(infecteds);
     await populateAllInfectedsDimensions(joinedInfecteds);
+  }
+
+  async deathRoutines() {
+    const deaths = await getDeathData();
+    const joinedInfecteds = joinData(deaths);
+    await populateAllDeathDimensions(joinedInfecteds);
   }
 }
 
