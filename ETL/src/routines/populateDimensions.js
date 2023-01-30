@@ -127,3 +127,23 @@ export const populateURSInfectado = async (infecteds) => {
 export const populateUTIInfectado = async (infecteds) => {
   await populate(infecteds, 'UTI', DimensaoUTIInfectado);
 };
+
+export const populateAllInfectedsDimensions = async (infecteds) => {
+  await populateClassificacaoCasoInfectado(infecteds);
+  await populateCodigoInfectado(infecteds);
+  await populateComorbidadeInfectado(infecteds);
+  await populateDataInfectado(infecteds);
+  await populateEtniaInfectado(infecteds);
+  await populateEvolucaoInfectado(infecteds);
+  await populateFaixaEtariaInfectado(infecteds);
+  await populateIdadeInfectado(infecteds);
+  await populateInternacaoInfectado(infecteds);
+  await populateMacroInfectado(infecteds);
+  await populateMicroInfectado(infecteds);
+  await populateMunicipioResidenciaInfectado(infecteds);
+  await populateOrigemDaInformacaoInfectado(infecteds);
+  await populateRacaInfectado(infecteds);
+  await populateSexoInfectado(infecteds);
+  await populateURSInfectado(infecteds);
+  await populateUTIInfectado(infecteds);
+};
