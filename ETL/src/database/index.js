@@ -2,24 +2,24 @@ import Sequelize from 'sequelize';
 
 import config from '../config/database';
 
-import DimensaoClassificacaoCasoInfectado from '../models/DimensaoClassificacaoCasoInfectado';
-import DimensaoCodigoInfectado from '../models/DimensaoCodigoInfectado';
-import DimensaoComorbidadeInfectado from '../models/DimensaoComorbidadeInfectado';
-import DimensaoDataInfectado from '../models/DimensaoDataInfectado';
-import DimensaoEtniaInfectado from '../models/DimensaoEtniaInfectado';
-import DimensaoEvolucaoInfectado from '../models/DimensaoEvolucaoInfectado';
-import DimensaoFaixaEtariaInfectado from '../models/DimensaoFaixaEtariaInfectado';
-import DimensaoIdadeInfectado from '../models/DimensaoIdadeInfectado';
-import DimensaoInternacaoInfectado from '../models/DimensaoInternacaoInfectado';
-import DimensaoMacroInfectado from '../models/DimensaoMacroInfectado';
-import DimensaoMicroInfectado from '../models/DimensaoMicroInfectado';
-import DimensaoMunicipioResidenciaInfectado from '../models/DimensaoMunicipioResidenciaInfectado';
-import DimensaoOrigemDaInformacaoInfectado from '../models/DimensaoOrigemDaInformacaoInfectado';
-import DimensaoRacaInfectado from '../models/DimensaoRacaInfectado';
-import DimensaoSexoInfectado from '../models/DimensaoSexoInfectado';
-import DimensaoURSInfectado from '../models/DimensaoURSInfectado';
-import DimensaoUTIInfectado from '../models/DimensaoUTIInfectado';
-import FatoInfectado from '../models/FatoInfectado';
+import DimensaoClassificacaoCasoInfectado from '../models/Infected/DimensaoClassificacaoCasoInfectado';
+import DimensaoCodigoInfectado from '../models/Infected/DimensaoCodigoInfectado';
+import DimensaoComorbidadeInfectado from '../models/Infected/DimensaoComorbidadeInfectado';
+import DimensaoDataInfectado from '../models/Infected/DimensaoDataInfectado';
+import DimensaoEtniaInfectado from '../models/Infected/DimensaoEtniaInfectado';
+import DimensaoEvolucaoInfectado from '../models/Infected/DimensaoEvolucaoInfectado';
+import DimensaoFaixaEtariaInfectado from '../models/Infected/DimensaoFaixaEtariaInfectado';
+import DimensaoIdadeInfectado from '../models/Infected/DimensaoIdadeInfectado';
+import DimensaoInternacaoInfectado from '../models/Infected/DimensaoInternacaoInfectado';
+import DimensaoMacroInfectado from '../models/Infected/DimensaoMacroInfectado';
+import DimensaoMicroInfectado from '../models/Infected/DimensaoMicroInfectado';
+import DimensaoMunicipioResidenciaInfectado from '../models/Infected/DimensaoMunicipioResidenciaInfectado';
+import DimensaoOrigemDaInformacaoInfectado from '../models/Infected/DimensaoOrigemDaInformacaoInfectado';
+import DimensaoRacaInfectado from '../models/Infected/DimensaoRacaInfectado';
+import DimensaoSexoInfectado from '../models/Infected/DimensaoSexoInfectado';
+import DimensaoURSInfectado from '../models/Infected/DimensaoURSInfectado';
+import DimensaoUTIInfectado from '../models/Infected/DimensaoUTIInfectado';
+import FatoInfectado from '../models/Infected/FatoInfectado';
 
 
 const modelsInfectados = [
