@@ -4,12 +4,12 @@ import Database from './database';
 import { getInfectedData, getDeathData } from './routines/extractData';
 import { joinData } from './routines/joinData';
 import { populateAllDeathDimensions, populateAllInfectedsDimensions } from './routines/populateDimensions';
-import { populateFatoInfectado } from './routines/populateFacts';
+import { populateFatoInfectado, populateFatoObito } from './routines/populateFacts';
 class App {
   async init() {
     await Database.createTables();
     await this.infectedsRoutines();
-    // await this.deathRoutines();
+    await this.deathRoutines();
   }
 
   async infectedsRoutines() {
@@ -21,8 +21,9 @@ class App {
 
   async deathRoutines() {
     const deaths = await getDeathData();
-    const joinedInfecteds = joinData(deaths);
-    await populateAllDeathDimensions(joinedInfecteds);
+    const joinedDeaths = joinData(deaths);
+    await populateAllDeathDimensions(joinedDeaths);
+    await populateFatoObito(joinedDeaths);
   }
 }
 
