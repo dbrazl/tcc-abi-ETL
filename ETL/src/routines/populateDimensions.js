@@ -16,6 +16,13 @@ import DimensaoURSInfectado from "../models/Infected/DimensaoURSInfectado";
 import DimensaoUTIInfectado from "../models/Infected/DimensaoUTIInfectado";
 import DimensaoMunicipioResidenciaInfectado from '../models/Infected/DimensaoMunicipioResidenciaInfectado';
 
+import DimensaoCodigoIBGEObito from "../models/Death/DimensaoCodigoIBGEObito";
+import DimensaoDataObito from "../models/Death/DimensaoDataObito";
+import DimensaoMacroObito from "../models/Death/DimensaoMacroObito";
+import DimensaoMicroObito from "../models/Death/DimensaoMicroObito";
+import DimensaoMunicipioResidenciaObito from "../models/Death/DimensaoMunicipioResidenciaObito";
+import DimensaoURSObito from "../models/Death/DimensaoURSObito";
+
 
 const getUniques = async (infecteds, label) => {
   const labels = infecteds[0];
@@ -31,8 +38,8 @@ const getUniques = async (infecteds, label) => {
   return uniques.filter(item => item);
 };
 
-const populate = async (infecteds, label, model) => {
-  const datas = await getUniques(infecteds, label);
+const populate = async (list, label, model) => {
+  const datas = await getUniques(list, label);
   await Promise.all(
     datas.forEach(
       async data => await model.create(
@@ -146,4 +153,28 @@ export const populateAllInfectedsDimensions = async (infecteds) => {
   await populateSexoInfectado(infecteds);
   await populateURSInfectado(infecteds);
   await populateUTIInfectado(infecteds);
+};
+
+export const populateCodigoIBGEObito = async (deaths) => {
+  await populate(deaths, 'CodigoIBGE', DimensaoCodigoIBGEObito);
+};
+
+export const populateDataObito = async (deaths) => {
+  await populate(deaths, 'DATA', DimensaoDataObito);
+};
+
+export const populateMacroObito = async (deaths) => {
+  await populate(deaths, 'Macro', DimensaoMacroObito);
+};
+
+export const populateMicroObito = async (deaths) => {
+  await populate(deaths, 'Micro', DimensaoMicroObito);
+};
+
+export const populateMunicipioResidenciaObito = async (deaths) => {
+  await populate(deaths, 'MUNICIPIO_RESIDENCIA', DimensaoMunicipioResidenciaObito);
+};
+
+export const populateURSObito = async (deaths) => {
+  await populate(deaths, 'URS', DimensaoURSObito);
 };
