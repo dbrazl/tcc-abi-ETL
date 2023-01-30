@@ -3,6 +3,7 @@ import Database from './database';
 
 import { getInfectedData } from './routines/extractData';
 import { joinData } from './routines/joinData';
+import { populateClassificacaoCasoInfectado } from './routines/populateDimensions';
 class App {
   async init() {
     await Database.createTables();
@@ -10,9 +11,9 @@ class App {
   }
 
   async infectedsRoutines() {
-    // const infecteds = await getInfectedData();
-    // const joinedInfecteds = joinData(infecteds);
-    // console.log(joinedInfecteds);
+    const infecteds = await getInfectedData();
+    const joinedInfecteds = joinData(infecteds);
+    await populateClassificacaoCasoInfectado(joinedInfecteds);
   }
 }
 
