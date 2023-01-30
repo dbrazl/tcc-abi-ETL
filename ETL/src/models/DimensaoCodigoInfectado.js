@@ -4,7 +4,11 @@ class DimensaoCodigoInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        codigo_id: Sequelize.NUMBER,
+        codigo_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

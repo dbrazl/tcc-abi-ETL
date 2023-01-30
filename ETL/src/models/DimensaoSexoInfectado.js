@@ -4,7 +4,11 @@ class DimensaoSexoInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        sex_id: Sequelize.NUMBER,
+        sex_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

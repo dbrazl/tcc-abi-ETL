@@ -4,7 +4,11 @@ class DimensaoMacroInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        macro_id: Sequelize.NUMBER,
+        macro_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

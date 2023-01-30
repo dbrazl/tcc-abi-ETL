@@ -4,7 +4,11 @@ class DimensaoEtniaInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        etnia_id: Sequelize.NUMBER,
+        etnia_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

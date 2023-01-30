@@ -4,7 +4,11 @@ class DimensaoClassificacaoCasoInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        classificacao_id: Sequelize.NUMBER,
+        classificacao_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

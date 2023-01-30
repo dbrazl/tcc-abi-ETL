@@ -4,7 +4,11 @@ class DimensaoOrigemDaInformacaoInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        origem_id: Sequelize.NUMBER,
+        origem_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

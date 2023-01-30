@@ -4,7 +4,11 @@ class DimensaoMunicipioResidenciaInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        municipio_id: Sequelize.NUMBER,
+        municipio_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

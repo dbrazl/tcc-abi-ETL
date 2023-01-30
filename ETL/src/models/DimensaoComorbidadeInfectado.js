@@ -4,7 +4,11 @@ class DimensaoComorbidadeInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        comorbidade_id: Sequelize.NUMBER,
+        comorbidade_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

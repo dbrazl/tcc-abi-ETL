@@ -4,7 +4,11 @@ class DimensaoIdadeInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        idade_id: Sequelize.NUMBER,
+        idade_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {

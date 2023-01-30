@@ -4,7 +4,11 @@ class DimensaoRacaInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
-        raca_id: Sequelize.NUMBER,
+        raca_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         rotulo: Sequelize.STRING
       },
       {
