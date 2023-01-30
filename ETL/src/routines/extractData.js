@@ -10,9 +10,7 @@ const fetchData = async url => {
   }
 };
 
-export const getInfectedData = async () => {
-  const urls = Object.values(URLs.infecteds);
-
+const getData = async urls => {
   const response = await Promise.all(
     urls.map(
       async url => fetchData(url)
@@ -20,4 +18,14 @@ export const getInfectedData = async () => {
   );
   
   return response;
+};
+
+export const getInfectedData = async () => {
+  const urls = Object.values(URLs.infecteds);
+  return getData(urls);
+};
+
+export const getDeathData = async () => {
+  const urls = Object.values(URLs.deaths);
+  return getData(urls);
 };
