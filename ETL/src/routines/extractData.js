@@ -1,3 +1,4 @@
+import Papa from 'papaparse';
 import { URLs } from "../config/url";
 
 const fetchData = async url => {
@@ -22,10 +23,12 @@ const getData = async urls => {
 
 export const getInfectedData = async () => {
   const urls = Object.values(URLs.infecteds);
-  return getData(urls);
+  const texts = await getData(urls);
+  return texts.map(text => Papa.parse(text, { delimiter: ";" }));;
 };
 
 export const getDeathData = async () => {
   const urls = Object.values(URLs.deaths);
-  return getData(urls);
+  const texts = await getData(urls);
+  return texts.map(text => Papa.parse(text, { delimiter: ";" }));
 };
