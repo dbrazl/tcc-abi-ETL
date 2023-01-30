@@ -13,6 +13,7 @@ class DimensaoCodigoIBGEObito extends Model {
       },
       {
         sequelize,
+        tableName: 'dimensao_codigo_ibge_obitos'
       }
     );
 

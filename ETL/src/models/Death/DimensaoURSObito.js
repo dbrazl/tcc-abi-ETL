@@ -13,6 +13,7 @@ class DimensaoURSObito extends Model {
       },
       {
         sequelize,
+        tableName: 'dimensao_urs_obitos'
       }
     );
 

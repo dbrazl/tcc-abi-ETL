@@ -13,6 +13,7 @@ class DimensaoURSInfectado extends Model {
       },
       {
         sequelize,
+        tableName: 'dimensao_urs_infectados'
       }
     );
 

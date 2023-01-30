@@ -10,9 +10,9 @@ class App {
   }
 
   async infectedsRoutines() {
-    const infecteds = await getInfectedData();
-    const joinedInfecteds = joinData(infecteds);
-    console.log(joinedInfecteds);
+    // const infecteds = await getInfectedData();
+    // const joinedInfecteds = joinData(infecteds);
+    // console.log(joinedInfecteds);
   }
 }
 
