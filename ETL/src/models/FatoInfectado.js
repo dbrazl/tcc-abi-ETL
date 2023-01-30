@@ -4,6 +4,11 @@ class FatoInfectado extends Model {
   static init(sequelize) {
     super.init(
       {
+        fato_id: {
+          type: Sequelize.NUMBER,
+          autoIncrement: true,
+          primaryKey: true
+        },
         id: Sequelize.NUMBER,
         urs_FK: Sequelize.NUMBER,
         micro_FK: Sequelize.NUMBER,
