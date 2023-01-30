@@ -1,3 +1,5 @@
+import { millisecondsToHours } from 'date-fns';
+
 import DimensaoClassificacaoCasoInfectado from "../models/Infected/DimensaoClassificacaoCasoInfectado";
 import DimensaoCodigoInfectado from "../models/Infected/DimensaoCodigoInfectado";
 import DimensaoComorbidadeInfectado from "../models/Infected/DimensaoComorbidadeInfectado";
@@ -16,7 +18,15 @@ import DimensaoSexoInfectado from "../models/Infected/DimensaoSexoInfectado";
 import DimensaoURSInfectado from "../models/Infected/DimensaoURSInfectado";
 import DimensaoUTIInfectado from "../models/Infected/DimensaoUTIInfectado";
 
+import DimensaoCodigoIBGEObito from '../models/Death/DimensaoCodigoIBGEObito';
+import DimensaoDataObito from '../models/Death/DimensaoDataObito';
+import DimensaoMacroObito from '../models/Death/DimensaoMacroObito';
+import DimensaoMicroObito from '../models/Death/DimensaoMicroObito';
+import DimensaoMunicipioResidenciaObito from '../models/Death/DimensaoMunicipioResidenciaObito';
+import DimensaoURSObito from '../models/Death/DimensaoURSObito';
+
 import FatoInfectado from "../models/Infected/FatoInfectado";
+import FatoObito from "../models/Death/FatoObito";
 
 const getFK = async (infecteds, item, label, model, label_id) => {
   const labels = infecteds[0];
@@ -88,11 +98,14 @@ const infectedFact = async (infecteds, item) => {
 };
 
 export const populateFatoInfectado = async (infecteds) => {
-  for (let batch = 0; batch < 2350; batch++) {
+  const BATCH_SIZE = 1000;
+  const batchNumber = Math.floor(infecteds.length / BATCH_SIZE);
+
+  for (let batch = 0; batch < batchNumber; batch++) {
     const start = new Date().getTime();
 
     await Promise.all(
-      infecteds.slice(batch * 1000 + 1, (batch + 1) * 1000 + 1).map(
+      infecteds.slice(batch * 1000 + 1, (batchNumber + 1) * 1000 + 1).map(
         async item => await infectedFact(infecteds, item)
       )
     );
@@ -103,5 +116,51 @@ export const populateFatoInfectado = async (infecteds) => {
     console.log('Fato Infectado')
     console.log('batch', batch);
     console.log('Timing by batch', end - start);
+    console.log('Timing remaining', millisecondsToHours((end - start) * (2350 - batch) / 60), 'hours');
+  }
+};
+
+const deathFact = async (infecteds, item) => {
+  try {
+    const codigo_ibge_FK = await getFK(infecteds, item, 'CodigoIBGE', DimensaoCodigoIBGEObito, 'codigo_ibge_id');
+    const data_FK = await getFK(infecteds, item, 'DATA', DimensaoDataObito, 'data_id');
+    const macro_FK = await getFK(infecteds, item, 'Macro', DimensaoMacroObito, 'macro_id');
+    const micro_FK = await getFK(infecteds, item, 'Micro', DimensaoMicroObito, 'micro_id');
+    const municipio_FK = await getFK(infecteds, item, 'MUNICIPIO_RESIDENCIA', DimensaoMunicipioResidenciaObito, 'municipio_id');
+    const urs_FK = await getFK(infecteds, item, 'URS', DimensaoURSObito, 'urs_id');
+
+    await FatoObito.create({
+      codigo_ibge_FK,
+      data_FK,
+      macro_FK,
+      micro_FK,
+      municipio_FK,
+      urs_FK,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const populateFatoObito = async (infecteds) => {
+  const BATCH_SIZE = 1000;
+  const batchNumber = Math.floor(infecteds.length / BATCH_SIZE);
+
+  for (let batch = 0; batch < batchNumber; batch++) {
+    const start = new Date().getTime();
+
+    await Promise.all(
+      infecteds.slice(batch * 1000 + 1, (batch + 1) * 1000 + 1).map(
+        async item => await deathFact(infecteds, item)
+      )
+    );
+
+    const end = new Date().getTime();
+
+    console.clear();
+    console.log('Fato Obito')
+    console.log('batch', batch);
+    console.log('Timing by batch', end - start);
+    console.log('Timing remaining', millisecondsToHours((end - start) * (batchNumber - batch) / 60), 'hours');
   }
 };
