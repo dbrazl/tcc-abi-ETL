@@ -10,10 +10,10 @@ services:
       - POSTGRES_HOST=localhost
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=123456
-      - POSTGRES_DB=auth-db
+      - POSTGRES_DB=etl-db
     ports:
       - 5432:5432
 
 networks:
-  sgq-network:
+  etl-network:
     driver: bridge
