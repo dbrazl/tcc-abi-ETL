@@ -27,7 +27,11 @@ const getFK = async (infecteds, item, label, model, label_id) => {
       where: { rotulo: item[index] }
     });
 
-    return entity[label_id]
+    if (entity) {
+      return entity[label_id]
+    } else {
+      return null;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -35,28 +39,48 @@ const getFK = async (infecteds, item, label, model, label_id) => {
 
 const infectedFact = async (infecteds, item) => {
   try {
+    const urs_FK = await getFK(infecteds, item, 'URS', DimensaoURSInfectado, 'urs_id');
+    const micro_FK = await getFK(infecteds, item, 'MICRO', DimensaoMicroInfectado, 'micro_id');
+    const macro_FK = await getFK(infecteds, item, 'MACRO', DimensaoMacroInfectado, 'macro_id');
+    const municipio_FK = await getFK(infecteds, item, 'MUNICIPIO_RESIDENCIA', DimensaoMunicipioResidenciaInfectado, 'municipio_id');
+    const codigo_FK = await getFK(infecteds, item, 'CODIGO', DimensaoCodigoInfectado, 'codigo_id');
+    const origem_FK = await getFK(infecteds, item, 'ORIGEM_DA_INFORMACAO', DimensaoOrigemDaInformacaoInfectado, 'origem_id');
+    const sexo_FK = await getFK(infecteds, item, 'SEXO', DimensaoSexoInfectado, 'sex_id');
+    const idade_FK = await getFK(infecteds, item, 'IDADE', DimensaoIdadeInfectado, 'idade_id');
+    const faixa_etaria_FK = await getFK(infecteds, item, 'FAIXA_ETARIA', DimensaoFaixaEtariaInfectado, 'faixa_etaria_id');
+    const raca_FK = await getFK(infecteds, item, 'RACA', DimensaoRacaInfectado, 'raca_id');
+    const etnia_FK = await getFK(infecteds, item, 'ETNIA', DimensaoEtniaInfectado, 'etnia_id');
+    const data_de_notificacao_FK = await getFK(infecteds, item, 'DATA_NOTIFICACAO', DimensaoDataInfectado, 'data_id')
+    const data_evolucao_FK = await getFK(infecteds, item, 'DATA_EVOLUCAO', DimensaoDataInfectado, 'data_id');
+    const data_1_sintoma_FK = await getFK(infecteds, item, 'DATA_1_SINTOMA', DimensaoDataInfectado, 'data_id');
+    const data_atualizacao_FK = await getFK(infecteds, item, 'DATA_ATUALIZACAO', DimensaoDataInfectado, 'data_id');
+    const evolucao_FK = await getFK(infecteds, item, 'EVOLUCAO', DimensaoEvolucaoInfectado, 'evolucao_id');
+    const comorbidade_FK = await getFK(infecteds, item, 'COMORBIDADE', DimensaoComorbidadeInfectado, 'comorbidade_id');
+    const uti_FK = await getFK(infecteds, item, 'UTI', DimensaoUTIInfectado, 'uti_id');
+    const internacao_FK = await getFK(infecteds, item, 'INTERNACAO', DimensaoInternacaoInfectado, 'internacao_id');
+    const classificacao_FK = await getFK(infecteds, item, 'CLASSIFICACAO_CASO', DimensaoClassificacaoCasoInfectado, 'classificacao_id');
+
     await FatoInfectado.create({
-      id: item['ID'],
-      urs_FK: await getFK(infecteds, item, 'URS', DimensaoURSInfectado, 'urs_id'),
-      micro_FK: await getFK(infecteds, item, 'MICRO', DimensaoMicroInfectado, 'micro_id'),
-      macro_FK: await getFK(infecteds, item, 'MACRO', DimensaoMacroInfectado, 'macro_id'),
-      municipio_FK: await getFK(infecteds, item, 'MUNICIPIO_RESIDENCIA', DimensaoMunicipioResidenciaInfectado, 'municipio_id'),
-      codigo_FK: await getFK(infecteds, item, 'CODIGO', DimensaoCodigoInfectado, 'codigo_id'),
-      origem_FK: await getFK(infecteds, item, 'ORIGEM_DA_INFORMACAO', DimensaoOrigemDaInformacaoInfectado, 'origem_id'),
-      sexo_FK: await getFK(infecteds, item, 'SEXO', DimensaoSexoInfectado, 'sexo_id'),
-      idade_FK: await getFK(infecteds, item, 'IDADE', DimensaoIdadeInfectado, 'idade_id'),
-      faixa_etaria_FK: await getFK(infecteds, item, 'FAIXA_ETARIA', DimensaoFaixaEtariaInfectado, 'faixa_etaria_id'),
-      raca_FK: await getFK(infecteds, item, 'RACA', DimensaoRacaInfectado, 'raca_id'),
-      etnia_FK: await getFK(infecteds, item, 'ETNIA', DimensaoEtniaInfectado, 'etnia_id'),
-      data_de_notificacao_FK: await getFK(infecteds, item, 'DATA_NOTIFICACAO', DimensaoDataInfectado, 'data_id'),
-      data_evolucao_FK: await getFK(infecteds, item, 'DATA_EVOLUCAO', DimensaoDataInfectado, 'data_id'),
-      data_1_sintoma_FK: await getFK(infecteds, item, 'DATA_1_SINTOMA', DimensaoDataInfectado, 'data_id'),
-      data_atualizacao_FK: await getFK(infecteds, item, 'DATA_ATUALIZACAO', DimensaoDataInfectado, 'data_id'),
-      evolucao_FK: await getFK(infecteds, item, 'EVOLUCAO', DimensaoEvolucaoInfectado, 'evolucao_id'),
-      comorbidade_FK: await getFK(infecteds, item, 'COMORBIDADE', DimensaoComorbidadeInfectado, 'comorbidade_id'),
-      uti_FK: await getFK(infecteds, item, 'UTI', DimensaoUTIInfectado, 'uti_id'),
-      internacao_FK: await getFK(infecteds, item, 'INTERNACAO', DimensaoInternacaoInfectado, 'internacao_id'),
-      classificacao_FK: await getFK(infecteds, item, 'CLASSIFICACAO_CASO', DimensaoClassificacaoCasoInfectado, 'classificacao_id'),
+      urs_FK,
+      micro_FK,
+      macro_FK,
+      municipio_FK,
+      codigo_FK,
+      origem_FK,
+      sexo_FK,
+      idade_FK,
+      faixa_etaria_FK,
+      raca_FK,
+      etnia_FK,
+      data_de_notificacao_FK,
+      data_evolucao_FK,
+      data_1_sintoma_FK,
+      data_atualizacao_FK,
+      evolucao_FK,
+      comorbidade_FK,
+      uti_FK,
+      internacao_FK,
+      classificacao_FK,
     });
   } catch (error) {
     console.error(error);
@@ -64,10 +88,20 @@ const infectedFact = async (infecteds, item) => {
 };
 
 export const populateFatoInfectado = async (infecteds) => {
-  const copyInfecteds = JSON.parse(JSON.stringify(infecteds));
-  copyInfecteds.shift();
+  for (let batch = 0; batch < 2350; batch++) {
+    const start = new Date().getTime();
 
-  await Promise.all(
-    copyInfecteds.map(item => infectedFact(infecteds, item))
-  );
+    await Promise.all(
+      infecteds.slice(batch * 1000 + 1, (batch + 1) * 1000 + 1).map(
+        async item => await infectedFact(infecteds, item)
+      )
+    );
+
+    const end = new Date().getTime();
+
+    console.clear();
+    console.log('Fato Infectado')
+    console.log('batch', batch);
+    console.log('Timing by batch', end - start);
+  }
 };

@@ -22,7 +22,7 @@ class Database {
 
   async createTables() {
     try {
-      await Promise.all(models.map(async model => await model.sync()));
+      await Promise.all(models.map(async model => await model.sync({ force: true })));
     } catch(error) {
       console.error(error);
     }
